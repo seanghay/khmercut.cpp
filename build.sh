@@ -28,4 +28,4 @@ crfsuite/lib/cqdb/src/lookup3.c \
 -I liblbfgs/include \
 -I crfsuite/include \
 -I crfsuite/lib/cqdb/include \
--x c++ main.cc -O3 -o bin/khmercut
+-x c++ main.cc -O3 -o bin/khmercut -w

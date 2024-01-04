@@ -60,5 +60,5 @@ Temporary Items
 .apdisk
 
 bin/
-*.crfsuite
 .vscode/
+build/
