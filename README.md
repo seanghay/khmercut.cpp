@@ -64,3 +64,17 @@ int main(int argc, const char *argv[])
 ### License
 
 `Apache-2.0`
+
+
+### Reference
+
+- [VietHoang1512/khmer-nltk](https://github.com/VietHoang1512/khmer-nltk) 
+- [crf_ner_10000.crfsuite](./crf_ner_10000.crfsuite) is extracted from [here](https://github.com/VietHoang1512/khmer-nltk/blob/main/khmernltk/word_tokenize/sklearn_crf_ner_10000.sav) by using a script below:
+
+```python
+import khmernltk.word_tokenize import model_path, load_model
+import shutil
+
+model = load_model(model_path)
+shutil.copy(model.modelfile.name, "crf_ner_10000.crfsuite")
+```
