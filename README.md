@@ -3,6 +3,25 @@
 A portable Khmer word boundary detection library using CRFSuite.
 
 
+
+### Build
+
+```shell
+git clone --recursive https://github.com/seanghay/khmercut.cpp.git
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make -j
+
+./khmercut
+
+```
+
+
 ### Usage
 
 ```cpp
@@ -41,23 +60,6 @@ int main(int argc, const char *argv[])
 ស្រុក
 ព្រៃនប់
 ```
-
-
-### Build binary
-
-```shell
-mkdir build
-
-cd build
-
-cmake ..
-
-make -j
-
-./khmercut
-
-```
-
 
 ### License
 
