@@ -36,10 +36,10 @@ int main(int argc, const char *argv[])
 
 	std::string text = "ឃាត់ខ្លួនជនសង្ស័យ០៤នាក់ ករណីលួចខ្សែភ្លើង នៅស្រុកព្រៃនប់";
 	CRFSuite::StringList tokens = khmercut::tokenize(tagger, text);
-	
+
 	for (const auto &token : tokens)
 	{
-		std::cout << token << std::endl;
+		std::cout << "\"" << token << "\"" << std::endl;
 	}
 }
 ```
@@ -47,18 +47,18 @@ int main(int argc, const char *argv[])
 #### Result
 
 ```
-ឃាត់ខ្លួន
-ជនសង្ស័យ
-០៤
-នាក់
- 
-ករណី
-លួច
-ខ្សែភ្លើង
- 
-នៅ
-ស្រុក
-ព្រៃនប់
+"ឃាត់ខ្លួន"
+"ជនសង្ស័យ"
+"០៤"
+"នាក់"
+" "
+"ករណី"
+"លួច"
+"ខ្សែភ្លើង"
+" "
+"នៅ"
+"ស្រុក"
+"ព្រៃនប់"
 ```
 
 ### License

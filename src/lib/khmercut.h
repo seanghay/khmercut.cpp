@@ -7,7 +7,6 @@
 
 namespace khmercut
 {
-
   struct ClusterValue
   {
     std::string value;

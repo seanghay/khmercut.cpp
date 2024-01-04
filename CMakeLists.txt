@@ -5,7 +5,7 @@ enable_language(C)
 
 set (CMAKE_CXX_STANDARD 11)
 
-add_executable(${PROJECT_NAME} src/main.cc src/khmercut.cc
+add_executable(${PROJECT_NAME} src/main.cc src/lib/khmercut.cc
   liblbfgs/lib/lbfgs.c
   crfsuite/lib/crf/src/crf1d_context.c
   crfsuite/lib/crf/src/crf1d_encode.c
@@ -35,5 +35,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   crfsuite/lib/cqdb/include 
   crfsuite/include
   utfcpp/source
+  src/lib
 )
 

@@ -9,9 +9,9 @@ int main(int argc, const char *argv[])
 
 	std::string text = "ឃាត់ខ្លួនជនសង្ស័យ០៤នាក់ ករណីលួចខ្សែភ្លើង នៅស្រុកព្រៃនប់";
 	CRFSuite::StringList tokens = khmercut::tokenize(tagger, text);
-	
+
 	for (const auto &token : tokens)
 	{
-		std::cout << token << std::endl;
+		std::cout << "\"" << token << "\"" << std::endl;
 	}
 }
