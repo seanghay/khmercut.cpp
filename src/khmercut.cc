@@ -1,6 +1,5 @@
 #include <iostream>
 #include "khmercut.h"
-#include <locale>
 
 namespace khmercut
 {
@@ -54,8 +53,6 @@ namespace khmercut
     while (it != end)
     {
       utf8::utfchar32_t cp = utf8::next(it, end);
-      cp = std::tolower(cp);
-
       bool num = isns(last_cp) && isns(cp);
       if (iskcc(cp) && last_cp != 0x17D2 && !num)
       {
