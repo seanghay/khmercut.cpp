@@ -1,6 +1,7 @@
 #pragma once
 
-#include <iostream>
+#include <string>
+#include <vector>
 #include "utf8.h"
 #include "crfsuite_api.hpp"
 
@@ -17,7 +18,7 @@ namespace khmercut
   };
 
   bool iskcc(const utf8::utfchar32_t &c);
-  bool isnumber(const utf8::utfchar32_t &c);
+  bool isns(const utf8::utfchar32_t &c);
   const char *get_type(const utf8::utfchar32_t &c);
   void set_kcc_type(ClusterValue &g);
   const std::vector<ClusterValue> graphemes(const std::string &value);

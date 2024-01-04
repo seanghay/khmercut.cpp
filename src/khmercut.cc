@@ -1,4 +1,5 @@
-#include <iostream>
+#include <string>
+#include <vector>
 #include "khmercut.h"
 
 namespace khmercut
