@@ -38,7 +38,7 @@ namespace khmercut
       return;
     }
 
-    g.type = std::string("K") + std::to_string(g.length);
+    g.type = "K" + std::to_string(g.length);
   }
 
   const std::vector<ClusterValue> graphemes(const std::string &value)
@@ -53,9 +53,9 @@ namespace khmercut
 
     while (it != end)
     {
-      utf8::utfchar32_t cp = utf8::next(it, end);
-      bool num = isns(last_cp) && isns(cp);
-      if (iskcc(cp) && last_cp != 0x17D2 && !num)
+      const utf8::utfchar32_t cp = utf8::next(it, end);
+      bool ns = isns(last_cp) && isns(cp);
+      if (iskcc(cp) && last_cp != 0x17D2 && !ns)
       {
         if (!chunk.value.empty())
         {
@@ -93,17 +93,17 @@ namespace khmercut
     const int maxi = kccs.size();
 
     Item item{
-        Attribute(std::string("kcc:") + kcc.value, 1.0),
-        Attribute(std::string("t:") + kcc.type, 1.0),
-        Attribute(std::string("ns"), kcc.ns_value()),
+        Attribute("kcc:" + kcc.value, 1.0),
+        Attribute("t:" + kcc.type, 1.0),
+        Attribute("ns", kcc.ns_value()),
     };
 
     item.reserve(7);
     if (i >= 1)
     {
-      item.push_back(Attribute(std::string("kcc[-1]:") + kccs[i - 1].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-1]t:") + kccs[i - 1].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[-1:0]:") + kccs[i - 1].value + kccs[i].value, 1.0));
+      item.push_back(Attribute("kcc[-1]:" + kccs[i - 1].value, 1.0));
+      item.push_back(Attribute("kcc[-1]t:" + kccs[i - 1].type, 1.0));
+      item.push_back(Attribute("kcc[-1:0]:" + kccs[i - 1].value + kccs[i].value, 1.0));
       item.push_back(Attribute("ns-1", kccs[i - 1].ns_value()));
     }
     else
@@ -113,26 +113,26 @@ namespace khmercut
 
     if (i >= 2)
     {
-      item.push_back(Attribute(std::string("kcc[-2]:") + kccs[i - 2].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-2]t:") + kccs[i - 2].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[-2:-1]:") + kccs[i - 2].value + kccs[i - 1].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-2:0]:") + kccs[i - 2].value + kccs[i - 1].value + kccs[i].value, 1.0));
+      item.push_back(Attribute("kcc[-2]:" + kccs[i - 2].value, 1.0));
+      item.push_back(Attribute("kcc[-2]t:" + kccs[i - 2].type, 1.0));
+      item.push_back(Attribute("kcc[-2:-1]:" + kccs[i - 2].value + kccs[i - 1].value, 1.0));
+      item.push_back(Attribute("kcc[-2:0]:" + kccs[i - 2].value + kccs[i - 1].value + kccs[i].value, 1.0));
     }
 
     if (i >= 3)
     {
-      item.push_back(Attribute(std::string("kcc[-3]:") + kccs[i - 3].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-3]t:") + kccs[i - 3].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[-3:0]:") + kccs[i - 3].value + kccs[i - 2].value + kccs[i - 1].value + kccs[i].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-3:-1]:") + kccs[i - 3].value + kccs[i - 2].value + kccs[i - 1].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[-3:-2]:") + kccs[i - 3].value + kccs[i - 2].value, 1.0));
+      item.push_back(Attribute("kcc[-3]:" + kccs[i - 3].value, 1.0));
+      item.push_back(Attribute("kcc[-3]t:" + kccs[i - 3].type, 1.0));
+      item.push_back(Attribute("kcc[-3:0]:" + kccs[i - 3].value + kccs[i - 2].value + kccs[i - 1].value + kccs[i].value, 1.0));
+      item.push_back(Attribute("kcc[-3:-1]:" + kccs[i - 3].value + kccs[i - 2].value + kccs[i - 1].value, 1.0));
+      item.push_back(Attribute("kcc[-3:-2]:" + kccs[i - 3].value + kccs[i - 2].value, 1.0));
     }
 
     if (i < maxi - 1)
     {
-      item.push_back(Attribute(std::string("kcc[+1]:") + kccs[i + 1].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[+1]t:") + kccs[i + 1].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[+1:0]:") + kccs[i].value + kccs[i + 1].value, 1.0));
+      item.push_back(Attribute("kcc[+1]:" + kccs[i + 1].value, 1.0));
+      item.push_back(Attribute("kcc[+1]t:" + kccs[i + 1].type, 1.0));
+      item.push_back(Attribute("kcc[+1:0]:" + kccs[i].value + kccs[i + 1].value, 1.0));
       item.push_back(Attribute("ns+1", kccs[i + 1].ns_value()));
     }
     else
@@ -142,20 +142,20 @@ namespace khmercut
 
     if (i < maxi - 2)
     {
-      item.push_back(Attribute(std::string("kcc[+2]:") + kccs[i + 2].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[+2]t:") + kccs[i + 2].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[+1:+2]:") + kccs[i + 1].value + kccs[i + 2].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[0:+2]:") + kccs[i].value + kccs[i + 1].value + kccs[i + 2].value, 1.0));
+      item.push_back(Attribute("kcc[+2]:" + kccs[i + 2].value, 1.0));
+      item.push_back(Attribute("kcc[+2]t:" + kccs[i + 2].type, 1.0));
+      item.push_back(Attribute("kcc[+1:+2]:" + kccs[i + 1].value + kccs[i + 2].value, 1.0));
+      item.push_back(Attribute("kcc[0:+2]:" + kccs[i].value + kccs[i + 1].value + kccs[i + 2].value, 1.0));
       item.push_back(Attribute("ns+2", kccs[i + 2].ns_value()));
     }
 
     if (i < maxi - 3)
     {
-      item.push_back(Attribute(std::string("kcc[+3]:") + kccs[i + 3].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[+3]t:") + kccs[i + 3].type, 1.0));
-      item.push_back(Attribute(std::string("kcc[+2:+3]:") + kccs[i + 2].value + kccs[i + 3].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[+1:+3]:") + kccs[i + 1].value + kccs[i + 2].value + kccs[i + 3].value, 1.0));
-      item.push_back(Attribute(std::string("kcc[0:+3]:") + kccs[i].value + kccs[i + 1].value + kccs[i + 2].value + kccs[i + 3].value, 1.0));
+      item.push_back(Attribute("kcc[+3]:" + kccs[i + 3].value, 1.0));
+      item.push_back(Attribute("kcc[+3]t:" + kccs[i + 3].type, 1.0));
+      item.push_back(Attribute("kcc[+2:+3]:" + kccs[i + 2].value + kccs[i + 3].value, 1.0));
+      item.push_back(Attribute("kcc[+1:+3]:" + kccs[i + 1].value + kccs[i + 2].value + kccs[i + 3].value, 1.0));
+      item.push_back(Attribute("kcc[0:+3]:" + kccs[i].value + kccs[i + 1].value + kccs[i + 2].value + kccs[i + 3].value, 1.0));
     }
 
     return item;
