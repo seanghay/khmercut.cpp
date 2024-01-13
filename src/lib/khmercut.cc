@@ -60,7 +60,7 @@ namespace khmercut
         if (!chunk.value.empty())
         {
           set_kcc_type(chunk);
-          items.push_back(chunk);
+          items.push_back(std::move(chunk));
         }
 
         chunk = {"", "", 0, 0};
@@ -185,7 +185,7 @@ namespace khmercut
       if (tag == "1" || i == 0)
       {
         if (!s.empty())
-          tokens.push_back(s);
+          tokens.push_back(std::move(s));
         s = kccs[i].value;
         continue;
       }
@@ -193,7 +193,7 @@ namespace khmercut
     }
 
     if (!s.empty())
-      tokens.push_back(s);
+      tokens.push_back(std::move(s));
     return tokens;
   }
 }
